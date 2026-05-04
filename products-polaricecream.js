@@ -1,6 +1,6 @@
 /**
 🍦 Polar Ice Cream - Centralized Product Data & Utilities
-📁 Recommended Path: /polaricecream/js/product-polaricecream.js
+📁 Recommended Path: /polaricecream/js/products-polaricecream.js
 🔗 Usage: Include this exact script on BOTH Hive Times & POLAR ICE CREAM pages.
 ✅ Edit the RAW_PRODUCTS array below → Auto-syncs across all linked sites.
 */
@@ -15,7 +15,6 @@
   };
 
   // 📦 RAW PRODUCT DATA - ✏️ EDIT THIS ARRAY TO UPDATE EVERYWHERE
-  // Prices updated from Polar Ice Cream Factory Shop Price List (2025/2026)
   const RAW_PRODUCTS = [
     // === ICUP PREMIUM DAIRY ===
     { id: "icup-premium", name: "iCUP Premium Dairy Ice Cream", price: 17.08, category: "icup-premium", niche: "frozen-desserts", location: "gauteng", description: "Premium dairy ice cream cup. Box of 24: R410 | Per Unit: R17.08", image: "https://image.qwenlm.ai/public_source/ea0842ba-66cb-4389-b0bb-541399ddd9a8/286b4a414-85d4-463a-9351-a60baa8259202114.png" },
@@ -161,15 +160,16 @@
       return true;
     }),
     
-    // ✅ Clean renderCard with proper template literal
     renderCard: (p) => `
       <article class="product-card" 
                data-id="${p.id}" 
                data-category="${p.categorySlug}" 
-               data-price="${p.price}">
+               data-price="${p.price}"
+               data-name="${p.name}"
+               data-description="${p.description}"
+               data-image="${p.image}">
         
-        <!-- Image Section -->
-        <div class="product-image-wrap">
+        <div class="product-image-wrap" onclick="openProductModal('${p.id}')">
           <img 
             src="${p.image}" 
             alt="${p.name}" 
@@ -179,7 +179,6 @@
           ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}
         </div>
         
-        <!-- Product Details -->
         <div class="product-info">
           <h3 class="product-name">${p.name}</h3>
           <p class="product-description">${p.description}</p>
@@ -187,7 +186,7 @@
           
           <button 
             class="add-to-cart-btn" 
-            onclick="cart.addToCart({
+            onclick="event.stopPropagation(); cart.addToCart({
               id: '${p.id}', 
               name: '${p.name}', 
               price: ${p.price}, 
@@ -195,16 +194,13 @@
               image: '${p.image}',
               businessName: '${p.businessName}',
               businessLogo: '${p.businessLogo}'
-            })">
+            }); showToast('✅ ${p.name} added to cart!');">
             <i class="fas fa-shopping-cart"></i> Add to Cart
           </button>
-          
-      
         </div>
       </article>
     `,
     
-    // ✅ Correct WhatsApp link generator for Polar Ice Cream
     getWhatsAppLink: (product, phoneNumber = "27104956227") => {
       const msg = encodeURIComponent(
         `Hi! I'd like to order from Polar Ice Cream:\n\n` +
@@ -217,9 +213,9 @@
     }
   };
 
-  // 📊 Dev Console Diagnostics (Remove in production)
+  // 📊 Dev Console
   console.group("🍦 Polar Ice Cream Products Synced");
-  console.log(`✅ ${PROCESSED.length} products loaded from Factory Shop Price List (2025/2026)`);
+  console.log(`✅ ${PROCESSED.length} products loaded`);
   const grouped = {};
   PROCESSED.forEach(p => {
     grouped[p.categorySlug] = grouped[p.categorySlug] || [];
@@ -228,6 +224,5 @@
   Object.entries(grouped).forEach(([cat, items]) => 
     console.log(`📁 ${cat}: ${items.length} item(s)`)
   );
-  console.log(`🎯 Niche: "${PROCESSED[0]?.nicheSlug || 'frozen-desserts'}" applied to all products`);
   console.groupEnd();
 })();
