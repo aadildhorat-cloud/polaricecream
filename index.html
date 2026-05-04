@@ -17,6 +17,96 @@ gtag('config', 'G-DTPGZ964FD');
 <link rel="stylesheet" href="css/style.css">
 
 <style>
+  /* === FUTURISTIC HIVE BACKGROUND - BODY ONLY === */
+body {
+    background-color: #E6F7FF;
+    background-image: 
+        /* Circuit/Connection Lines */
+        linear-gradient(60deg, transparent 49.5%, rgba(0, 119, 204, 0.08) 50%, transparent 50.5%),
+        linear-gradient(-60deg, transparent 49.5%, rgba(0, 119, 204, 0.08) 50%, transparent 50.5%),
+        /* Tech Node Dots */
+        radial-gradient(circle 1.5px at 15px 15px, rgba(0, 153, 255, 0.15) 98%, transparent 100%),
+        /* Main Hex Grid + Dashed Inner Tech Hex + Glow Center */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='104' viewBox='0 0 120 104'%3E%3Cpath d='M60 0L120 30V90L60 120L0 90V30L60 0Z' fill='none' stroke='%230099FF' stroke-width='0.8' opacity='0.25'/%3E%3Cpath d='M60 15L105 37.5V82.5L60 105L15 82.5V37.5L60 15Z' fill='none' stroke='%230077CC' stroke-width='0.4' stroke-dasharray='4 2' opacity='0.1'/%3E%3Ccircle cx='60' cy='60' r='3' fill='%230099FF' opacity='0.2'/%3E%3C/svg%3E"),
+        /* Soft Depth Gradient */
+        linear-gradient(135deg, #E6F7FF 0%, #F0F8FF 50%, #E6F7FF 100%);
+    background-size: 
+        120px 104px, 120px 104px,
+        30px 30px,
+        120px 104px,
+        auto;
+    background-position: 
+        0 0, 0 0,
+        0 0,
+        0 0,
+        0 0;
+    background-attachment: fixed;
+    background-repeat: repeat;
+}
+
+/* === STRICT ISOLATION: PREVENT PATTERN BLEEDING INTO UI === */
+header, .header-top-row, .ai-search-bar-container,
+#slider-container, .slider-section,
+footer, .footer-container,
+.business-modal, .business-modal-overlay,
+.product-modal, .product-modal-overlay,
+.cart-modal, .cart-modal-overlay,
+.menu-overlay, .side-menu,
+.ai-chat-panel, .ai-chat-widget, .floating-contact,
+.content-section, .products-grid, .product-card,
+.toast-notification, .business-section {
+    background-image: none !important;
+}
+
+/* === RESTORE ORIGINAL SOLID BACKGROUNDS (POLAR COLORS) === */
+header { background: linear-gradient(135deg, #0077CC, #0099FF) !important; }
+.ai-search-bar-container { background: rgba(0, 119, 204, 0.15) !important; }
+#slider-container { background: linear-gradient(180deg, #F0F8FF, #E6F7FF) !important; }
+footer { background: linear-gradient(135deg, #0077CC, #0099FF) !important; }
+.business-modal, .product-modal, .cart-modal, .side-menu, .product-card, .business-section { background: #FFFFFF !important; }
+.content-section { background: transparent !important; }
+
+/* === POLAR RED ACCENTS (for buttons, prices, CTAs) === */
+.price-tag, .cta-button, .special-offer {
+    background: #FF0000 !important;
+    color: #FFFFFF !important;
+}
+
+/* === FUTURISTIC HOVER GLOW (MATCHES POLAR BLUE THEME) === */
+.product-card:hover, .business-section:hover {
+    box-shadow: 0 12px 35px rgba(0, 153, 255, 0.2), 0 0 0 1px rgba(0, 153, 255, 0.3) inset, 0 0 20px rgba(0, 119, 204, 0.15) !important;
+}
+
+/* === MOBILE PERFORMANCE OPTIMIZATION === */
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll;
+        background-image: 
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='104' viewBox='0 0 120 104'%3E%3Cpath d='M60 0L120 30V90L60 120L0 90V30L60 0Z' fill='none' stroke='%230099FF' stroke-width='0.8' opacity='0.2'/%3E%3Ccircle cx='60' cy='60' r='3' fill='%230099FF' opacity='0.15'/%3E%3C/svg%3E"),
+            linear-gradient(135deg, #E6F7FF, #F0F8FF);
+        background-size: 120px 104px, auto;
+    }
+}
+
+/* === GLOBAL RESET & MODERN STYLING === */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--background-color);
+}
+
+/* === POLAR BRAND COLOR VARIABLES === */
+:root {
+    --polar-blue: #0099FF;
+    --polar-blue-dark: #0077CC;
+    --polar-blue-light: #66CCFF;
+    --polar-red: #FF0000;
+    --polar-white: #FFFFFF;
+    --polar-bg-light: #E6F7FF;
+    --polar-bg-lighter: #F0F8FF;
+}
 /* === GLOBAL RESET === */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -757,8 +847,8 @@ footer {
   </div>
   <div class="menu-items">
     <div class="menu-item">
-      <a href="index.html" class="menu-link" onclick="toggleMenu()">
-        <span><i class="fas fa-home"></i> Home</span>
+      <a href="https://hivetimes.co.za/" class="menu-link" onclick="toggleMenu()">
+        <span><i class="fas fa-hive"></i> Hive times</span>
       </a>
     </div>
     <div class="menu-item">
@@ -826,7 +916,7 @@ footer {
       <p><i class="fas fa-envelope"></i> polarnorthcliff@gmail.com</p>
     </div>
     <div class="social-links">
-      <a href="https://wa.me/27104956227" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://wa.me/27604368376" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
     </div>
   </div>
 </nav>
@@ -1040,18 +1130,18 @@ footer {
 
 <!-- FLOATING CONTACT -->
 <div class="floating-contact">
-  <button class="float-btn whatsapp-float" onclick="window.open('https://wa.me/27104956227', '_blank')" title="WhatsApp">
+  <button class="float-btn whatsapp-float" onclick="window.open('https://wa.me/27604368376', '_blank')" title="WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </button>
 </div>
 
 <!-- AI CHAT WIDGET -->
 <div class="ai-chat-widget" id="aiChatWidget">
-  <img src="images-logo/bee.jpg" alt="Ask Beelal AI">
+  <img src="images-polar-ice-cream/bee.jpg" alt="Ask Beelal AI">
 </div>
 <div class="ai-chat-panel" id="aiChatPanel">
   <div class="ai-chat-header">
-    <div class="ai-avatar-square"><img src="images-logo/bee.jpg" alt="Beelal AI"></div>
+    <div class="ai-avatar-square"><img src="images-polar-ice-cream/bee.jpg" alt="Beelal AI"></div>
     <h4>Ask Beelal</h4>
     <button class="ai-close-btn" id="aiCloseBtn">×</button>
   </div>
@@ -1344,7 +1434,7 @@ function sendCartToWhatsApp() {
   let msg = "Hi Polar Ice Cream! I'd like to place an order from Hive Times:\n\n";
   cart.items.forEach(item => { msg += `• ${item.name} x${item.quantity} — R${(item.price * item.quantity).toFixed(2)}\n`; });
   msg += `\n*Total: R${cart.calculateTotal()}*\n\nThank you!`;
-  const url = `https://wa.me/27104956227?text=${encodeURIComponent(msg)}`;
+  const url = `https://wa.me/27604368376?text=${encodeURIComponent(msg)}`;
   window.open(url, '_blank');
 }
 
