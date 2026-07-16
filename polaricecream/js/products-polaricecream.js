@@ -352,4 +352,13 @@ document.addEventListener('polaricecream:products:loaded', () => setTimeout(gene
 document.addEventListener('DOMContentLoaded', () => {
 if (PRODUCTS.length > 0) setTimeout(generateProductSchema, 500);
 });
-})();
+// 🚀 Notify Hive Times that Polar Ice Cream data is ready
+try {
+    document.dispatchEvent(new CustomEvent('polaricecream:products:loaded', { 
+        detail: { products: PROCESSED } 
+    }));
+} catch (err) {
+    console.warn('Could not dispatch polaricecream:products:loaded event', err);
+}
+
+})(); // <-- This is the existing closing bracket
